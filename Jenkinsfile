@@ -1,20 +1,14 @@
 node {
-	def mvnHome
+
     stage('Pull source code') {
-        git 'https://github.com/code-sci/notebook-k8s.git'
-		mvnHome = tool 'maven'
+        git 'https://gitee.com/microshadow/notebook-k8s.git'
+
     }
     dir('notebook-service') {
-        stage('Maven build and Unit Test'){
+        stage('Maven deploy'){
             sh '''
-                mvn deploy
-
+                mvn deploy -Dmaven.test.skip=true 
             '''
-
         }
-
-       
-
     }
-
  }
